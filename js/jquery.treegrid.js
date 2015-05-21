@@ -601,20 +601,11 @@
             return $(this).closest('table');
         },
         getRootNodes: function(treegridContainer) {
-            var result = $.grep(treegridContainer.find('tr'), function(element) {
-                var classNames = $(element).attr('class');
-                var templateClass = /treegrid-([A-Za-z0-9_-]+)/;
-                var templateParentClass = /treegrid-parent-([A-Za-z0-9_-]+)/;
-                return templateClass.test(classNames) && !templateParentClass.test(classNames);
-            });
+            var result = treegridContainer.find('tr[class^=treegrid-]:not([class^=treegrid-parent])');
             return $(result);
         },
         getAllNodes: function(treegridContainer) {
-            var result = $.grep(treegridContainer.find('tr'), function(element) {
-                var classNames = $(element).attr('class');
-                var templateClass = /treegrid-([A-Za-z0-9_-]+)/;
-                return templateClass.test(classNames);
-            });
+            var result = treegridContainer.find('tr[class^=treegrid-]')
             return $(result);
         },
         //Events
